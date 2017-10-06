@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var sql = require('mssql');
 var mysql      = require('mysql');
 
 var connection = mysql.createConnection({

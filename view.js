@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var sql = require('mssql');
 var mysql      = require('mysql');
 
 var connection = mysql.createConnection({
@@ -25,10 +24,9 @@ connection.query(sql,function (err, result) {
        console.log('------------------------------------------------------------\n\n');  
 });
  
-
+connection.end();
 
 app.listen(8080, function() {
 	console.log('app listening on 8080');
 })
 
-connection.end();
