@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var mysql = require('mysql');
+var apiRequest = require('./api');
 
 var connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -17,6 +18,9 @@ router.get('/', function(req, res, next) {
     res.send('service api');
 });
 
+//improt api requrest
+router.use('/api/', apiRequest);
+
 router.get('/view', function(req, res, next) {
     var sql = "select * from myclass";
     connection.query(sql, function(err, result) {
@@ -31,18 +35,6 @@ router.get('/view', function(req, res, next) {
         console.log('------------------------------------------------------------\n\n');
     });
     
-});
-
-router.get('/insert', function(req, res, next) {
-    res.send('insert');
-});
-
-router.get('/update', function(req, res, next) {
-    res.send('update');
-});
-
-router.get('/delete', function(req, res, next) {
-    res.send('delete');
 });
 
 module.exports = router;
