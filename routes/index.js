@@ -12,6 +12,7 @@ var connection = mysql.createConnection({
 
 
 connection.connect();
+
 router.get('/', function(req, res, next) {
     res.send('service api');
 });
