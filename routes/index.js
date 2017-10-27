@@ -1,8 +1,15 @@
+var path = require('path');
 var express = require('express');
 var app = express();
 var router = express.Router();
 var mysql = require('mysql');
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 var apiRequest = require('./api');
+var pgaeRouter = require('./page');
 
 var connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -11,30 +18,19 @@ var connection = mysql.createConnection({
     database: 'test'
 });
 
-
 connection.connect();
 
 router.get('/', function(req, res, next) {
     res.send('service api');
 });
 
+router.get('/test',function(req,res){
+    // res.send('service api test');
+    res.render('pages/index');
+});
+
 //improt api requrest
 router.use('/api/', apiRequest);
-
-router.get('/view', function(req, res, next) {
-    var sql = "select * from myclass";
-    connection.query(sql, function(err, result) {
-        if (err) {
-            console.log('[SELECT ERROR] - ', err.message);
-            return;
-        }
-
-        console.log('--------------------------SELECT----------------------------');
-        console.log(result);
-        res.send(result);
-        console.log('------------------------------------------------------------\n\n');
-    });
-    
-});
+router.use('/page/', pgaeRouter);
 
 module.exports = router;

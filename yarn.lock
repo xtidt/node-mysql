@@ -17,26 +17,9 @@ array-flatten@1.1.1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/array-flatten/download/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
 
-babel-runtime@^6.23.0:
-  version "6.26.0"
-  resolved "http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
-big-number@0.3.1:
-  version "0.3.1"
-  resolved "http://registry.npm.taobao.org/big-number/download/big-number-0.3.1.tgz#ac73020c0a59bb79eb17c2ce2db77f77d974e013"
-
 bignumber.js@4.0.2:
   version "4.0.2"
   resolved "http://registry.npm.taobao.org/bignumber.js/download/bignumber.js-4.0.2.tgz#2d1dc37ee5968867ecea90b6da4d16e68608d21d"
-
-bl@^1.2.0:
-  version "1.2.1"
-  resolved "http://registry.npm.taobao.org/bl/download/bl-1.2.1.tgz#cac328f7bee45730d404b692203fcb590e172d5e"
-  dependencies:
-    readable-stream "^2.0.5"
 
 body-parser@1.18.2, body-parser@^1.18.2:
   version "1.18.2"
@@ -95,15 +78,11 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/cookie/download/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
-core-js@^2.4.0:
-  version "2.5.1"
-  resolved "http://registry.npm.taobao.org/core-js/download/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
-
 core-util-is@~1.0.0:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/core-util-is/download/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-debug@2.6.9, debug@^2.6.3:
+debug@2.6.9:
   version "2.6.9"
   resolved "http://registry.npm.taobao.org/debug/download/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
@@ -127,6 +106,10 @@ dicer@0.2.5:
 ee-first@1.1.1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/ee-first/download/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
+
+ejs@^2.5.7:
+  version "2.5.7"
+  resolved "http://registry.npm.taobao.org/ejs/download/ejs-2.5.7.tgz#cc872c168880ae3c7189762fd5ffc00896c9518a"
 
 encodeurl@~1.0.1:
   version "1.0.1"
@@ -195,10 +178,6 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "http://registry.npm.taobao.org/fresh/download/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
 
-generic-pool@^3.1.7:
-  version "3.1.8"
-  resolved "http://registry.npm.taobao.org/generic-pool/download/generic-pool-3.1.8.tgz#09844b6545bc9177ec218bd35d4ad894c65be271"
-
 http-errors@1.6.2, http-errors@~1.6.2:
   version "1.6.2"
   resolved "http://registry.npm.taobao.org/http-errors/download/http-errors-1.6.2.tgz#0a002cc85707192a7e7946ceedc11155f60ec736"
@@ -208,7 +187,7 @@ http-errors@1.6.2, http-errors@~1.6.2:
     setprototypeof "1.0.3"
     statuses ">= 1.3.1 < 2"
 
-iconv-lite@0.4.19, iconv-lite@^0.4.11:
+iconv-lite@0.4.19:
   version "0.4.19"
   resolved "http://registry.npm.taobao.org/iconv-lite/download/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
@@ -267,14 +246,6 @@ mkdirp@^0.5.1:
 ms@2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/ms/download/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
-
-mssql@^4.1.0:
-  version "4.1.0"
-  resolved "http://registry.npm.taobao.org/mssql/download/mssql-4.1.0.tgz#5a70e24d751c28bcb9f23acf709c1bdaccc8eae6"
-  dependencies:
-    debug "^2.6.3"
-    generic-pool "^3.1.7"
-    tedious "^2.0.0"
 
 multer@^1.3.0:
   version "1.3.0"
@@ -357,7 +328,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@2.3.3, readable-stream@^2.0.5, readable-stream@^2.2.2, readable-stream@^2.2.6:
+readable-stream@2.3.3, readable-stream@^2.2.2:
   version "2.3.3"
   resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
   dependencies:
@@ -368,10 +339,6 @@ readable-stream@2.3.3, readable-stream@^2.0.5, readable-stream@^2.2.2, readable-
     safe-buffer "~5.1.1"
     string_decoder "~1.0.3"
     util-deprecate "~1.0.1"
-
-regenerator-runtime@^0.11.0:
-  version "0.11.0"
-  resolved "http://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.11.0.tgz#7e54fe5b5ccd5d6624ea6255c3473be090b802e1"
 
 safe-buffer@5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
@@ -412,10 +379,6 @@ setprototypeof@1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.0.tgz#d0bd85536887b6fe7c0d818cb962d9d91c54e656"
 
-sprintf@0.1.5:
-  version "0.1.5"
-  resolved "http://registry.npm.taobao.org/sprintf/download/sprintf-0.1.5.tgz#8f83e39a9317c1a502cb7db8050e51c679f6edcf"
-
 sqlstring@2.2.0:
   version "2.2.0"
   resolved "http://registry.npm.taobao.org/sqlstring/download/sqlstring-2.2.0.tgz#c3135c4ea8abcd7e7ee741a4966a891d86a4f191"
@@ -437,17 +400,6 @@ string_decoder@~1.0.3:
   resolved "http://registry.npm.taobao.org/string_decoder/download/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
   dependencies:
     safe-buffer "~5.1.0"
-
-tedious@^2.0.0:
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/tedious/download/tedious-2.0.1.tgz#4f7c1f90b4a2c378fd3e033bb93834ea1d7a81be"
-  dependencies:
-    babel-runtime "^6.23.0"
-    big-number "0.3.1"
-    bl "^1.2.0"
-    iconv-lite "^0.4.11"
-    readable-stream "^2.2.6"
-    sprintf "0.1.5"
 
 type-is@^1.6.4, type-is@~1.6.15:
   version "1.6.15"
