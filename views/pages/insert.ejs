@@ -70,7 +70,9 @@
         }
       }
 
-      model.addData(data);
+      model.addData(data).then(() => {
+        window.location.href = '/';
+      });
     }
   </script>
 </body>

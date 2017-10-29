@@ -15,6 +15,10 @@ page.get('/view', function(req, res, next) {
   res.render('pages/view');
 });
 
+page.get('/view/:id', function(req, res, next) {
+  res.render('pages/detail');
+});
+
 page.get('/insert', function(req, res, next) {
   res.render('pages/insert');
 });

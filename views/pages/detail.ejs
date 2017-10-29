@@ -1,4 +1,4 @@
-<!-- views/pages/view.ejs -->
+<!-- views/pages/index.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +12,7 @@
   <header>
     <% include ../partials/nav %>
   </header>
+
   <main>
     <div>
       <table class="table table-striped">
@@ -21,7 +22,6 @@
             <th>姓名</th>
             <th>性别</th>
             <th>成绩</th>
-            <th>操作</th>
           </tr>
         </thead>
         <tbody id="content">
@@ -35,43 +35,26 @@
   </footer>
 
   <script>
+    var id = window.location.pathname.match(/view\/(\d+)/)[1];
     let model = {
-      getItems: () => {
+      getItem: (id) => {
         return $.ajax({
-          url: '/api/view',
-          method: "GET",
-        })
-      },
-
-      delItem: (id)=> {
-        return $.ajax({
-          url: '/api/delete/' + id,
+          url: '/api/view/' + id,
           method: "GET",
         })
       }
     }
-    model.getItems().then((data) => {
+
+    model.getItem(id).then((data) => {
       let string = '';
       data.forEach(function (item, index) {
         string += `<tr>`;
         string += `<td>${index + 1}</td><td>${item.name}</td><td>${item.sex}</td><td>${item.degree}</td>`;
-        string += `<td><a href="javascript:void(0)" onclick="del(${item.id})">删除</a>  `;
-        string += `<a href="javascript:void(0)" onclick="view(${item.id})">查看</a></td>`;
         string += `</tr>`
       }, this);
 
       $('#content').html(string);
     });
-
-    function del(id){
-      model.delItem(id).then(()=>{
-        window.location.reload();
-      });
-    }
-
-    function view(id){
-      window.location.href = './view/'+ id;
-    }
   </script>
 </body>
 

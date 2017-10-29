@@ -1,5 +1,5 @@
 var express = require('express');
-var mysql  = require('mysql');  
+var mysql = require('mysql');
 var api = express.Router();
 var db = require('../modal/db');
 
@@ -10,6 +10,9 @@ api.use(function timeLog(req, res, next) {
   next();
 });
 
+/**
+ * 查询列表页
+ */
 api.get('/view', function (req, res, next) {
   db.query('select * from myclass', function (err, rows) {
     if (err) {
@@ -20,10 +23,23 @@ api.get('/view', function (req, res, next) {
   })
 });
 
-api.get('/insert', function (req, res, next) {
-  res.send('insert');
+/**
+ * 查询详情页
+ */
+api.get('/view/:id', function (req, res, next) {
+  var id = req.params.id;
+  db.query('select * from myclass where id = '+ id, function (err, rows) {
+    if (err) {
+      res.send([]);
+    } else {
+      res.send(rows);
+    }
+  })
 });
 
+/**
+ * 新增页面跳转
+ */
 api.post('/insert', function (req, res, next) {
   var name = req.body.name;
   var sex = req.body.sex;
@@ -44,12 +60,25 @@ api.post('/insert', function (req, res, next) {
   })
 });
 
+/**
+ * 修改
+ */
 api.get('/update', function (req, res, next) {
   res.send('update');
 });
 
-api.get('/delete', function (req, res, next) {
-  res.send('delete');
+/**
+ * 删
+ */
+api.get('/delete/:id', function (req, res, next) {
+  var id = req.params.id;
+  db.query("delete from myclass where id=" + id, function (err, rows) {
+    if (err) {
+      res.end('删除失败：' + err)
+    } else {
+      res.send('delete');
+    }
+  });
 });
 
 module.exports = api;
