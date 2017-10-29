@@ -7,13 +7,16 @@ page.use(function timeLog(req, res, next) {
   next();
 });
 
-page.get('/view', function(req, res, next) {
+page.get('/', function(req, res, next) {
   res.render('pages/index');
-  // res.send('page view');
+});
+
+page.get('/view', function(req, res, next) {
+  res.render('pages/view');
 });
 
 page.get('/insert', function(req, res, next) {
-  res.send('page insert');
+  res.render('pages/insert');
 });
 
 page.get('/update', function(req, res, next) {

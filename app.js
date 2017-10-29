@@ -24,19 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// mysql
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'test'
-});
-
-connection.connect();
-
 //router
-app.use('/', index);
+app.use('/', pages);
 app.use('/users', users);
 app.use('/page', pages);
 app.use('/api/', apiRequest);

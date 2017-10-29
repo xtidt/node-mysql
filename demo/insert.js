@@ -9,8 +9,8 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-var  addSql = 'INSERT INTO myclass(id, name, sex, degree) VALUES(2,?,?,?)';
-var  addSqlParams = ['tool', 1, 200];
+var  addSql = 'INSERT INTO myclass(name, sex, degree) VALUES(?,?,?)';
+var  addSqlParams = ['tool1234', 1, 200];
 
 //增
 connection.query(addSql,addSqlParams,function (err, result) {

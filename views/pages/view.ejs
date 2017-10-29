@@ -1,0 +1,56 @@
+<!-- views/pages/view.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/header %>
+</head>
+
+<body class="container">
+
+  <header>
+    <% include ../partials/nav %>
+  </header>
+  <main>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>成绩</th>
+          </tr>
+        </thead>
+        <tbody id="content">
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+  <script>
+    let model = {
+      getData: () => {
+        return $.ajax({
+          url: '/api/view',
+          method: "GET",
+        })
+      }
+    }
+    model.getData().then((data) => {
+      let string = '';
+      data.forEach(function (item, index) {
+        string += `<tr><td>${index + 1}</td><td>${item.name}</td><td>${item.sex}</td><td>${item.degree}</td></tr>`
+      }, this);
+
+      $('#content').html(string);
+    });
+  </script>
+</body>
+
+</html>
