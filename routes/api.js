@@ -28,7 +28,7 @@ api.get('/view', function (req, res, next) {
  */
 api.get('/view/:id', function (req, res, next) {
   var id = req.params.id;
-  db.query('select * from myclass where id = '+ id, function (err, rows) {
+  db.query('select * from myclass where id = ' + id, function (err, rows) {
     if (err) {
       res.send([]);
     } else {
@@ -80,5 +80,31 @@ api.get('/delete/:id', function (req, res, next) {
     }
   });
 });
+
+/**
+ * 查询
+ */
+api.get('/search', function (req, res, next) {
+  var name = req.query.name;
+  var sql = "select * from myclass";
+
+  if (name) {
+    sql += " and name LIKE '%" + name + "%' ";
+  }
+
+  // if (age) {
+  //   sql += " and age=" + age + " ";
+  // }
+  sql = sql.replace("and", "where");
+
+  
+  db.query(sql, function (err, rows) {
+    if (err) {
+      res.end("查询失败：", err)
+    } else {
+      res.send(rows);
+    }
+  });
+})
 
 module.exports = api;
