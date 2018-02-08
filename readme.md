@@ -19,6 +19,15 @@ CREATE TABLE `myclass` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 ```
+> 新建用户关系表
+```sql
+CREATE TABLE `user` (
+  `id` int(4) NOT NULL,
+  `username` char(20) DEFAULT NULL,
+  `password` char(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+```
 
 > 连接数据库 新建连接池
 ```javascript
