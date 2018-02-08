@@ -22,6 +22,7 @@
             <th>姓名</th>
             <th>性别</th>
             <th>成绩</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody id="content">
@@ -50,6 +51,8 @@
       data.forEach(function (item, index) {
         string += `<tr>`;
         string += `<td>${index + 1}</td><td>${item.name}</td><td>${item.sex}</td><td>${item.degree}</td>`;
+        string += `<td><a href="javascript:void(0)" onclick="del(${item.id})">删除</a>  `;
+        string += `<a href="javascript:void(0)" onclick="view(${item.id})">查看</a></td>`;
         string += `</tr>`
       }, this);
 
