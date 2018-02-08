@@ -7,5 +7,15 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <% if(locals.islogin){%>
+      <p>
+        <h2>用户：<%= username %></h2>已经登陆
+        <a href="/page">前往主页</a>
+      </p>
+    <% }else{%>
+      <p><a href="/user/login">前往登录</a></p>
+    <%}%>
+
   </body>
 </html>

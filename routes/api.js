@@ -6,7 +6,7 @@ var db = require('../modal/db');
 
 // 该路由使用的中间件
 api.use(function timeLog(req, res, next) {
-  console.log('Time: ', Date.now());
+  // console.log('Time: ', Date.now());
   next();
 });
 
@@ -97,7 +97,7 @@ api.get('/search', function (req, res, next) {
   // }
   sql = sql.replace("and", "where");
 
-  
+
   db.query(sql, function (err, rows) {
     if (err) {
       res.end("查询失败：", err)

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header %>
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <h1>
+                <%= title %>
+            </h1>
+            <a href="/user/reg">reg</a>
+
+            <div class="container">
+                <form class="col-sm-12 form-horizontal" role="form">
+                    <fieldset>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="username">用户名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="用户名" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="password">密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="密码" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9 text-center">
+                                <button type="button" onclick="login()" class="btn btn-default">提交</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    let model = {
+      login: (options) => {
+        return $.ajax({
+          url: '/user/login',
+          method: "POST",
+          data: options
+        })
+      }
+    }
+
+    function login() {
+      var data = {
+        username: $('#username').val(),
+        password: $("#password").val()
+      }
+
+      for(var i in data){
+        if(!data[i]){
+          return false;
+        }
+      }
+
+      model.login(data).then(() => {
+        window.location.href = '/';
+      });
+    }
+</script>
+  </body>
+</html>
