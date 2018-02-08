@@ -1,0 +1,56 @@
+<!-- views/partials/tool.ejs -->
+<ul class="nav navbar-nav">
+  <li><a href="/view">查看</a></li>
+  <li><a href="/insert">新增</a></li>
+</ul>
+
+<ul class="search">
+    <form class="form-inline" onsubmit="gosearch(event)">
+      <div class="form-group">
+        <label class="sr-only" for="keys"></label>
+        <input type="text" class="form-control" id="keys" placeholder="按姓名搜索">
+      </div>
+      <button type="button" onclick="search()" class="btn btn-default">搜索</button>
+    </form>
+</ul>
+<style>
+  .search {
+    float: right;
+  }
+</style>
+<script>
+  let searchModel = {
+    get: (value) => {
+      return $.ajax({
+        url: '/api/search',
+        method: "GET",
+        data: {
+          name: value
+        }
+      })
+    }
+  }
+
+  function search(){
+    var value = $('#keys').val();
+
+    searchModel.get(value).then((data) => {
+      let string = '';
+      data.forEach(function (item, index) {
+        string += `<tr>`;
+        string += `<td>${index + 1}</td><td>${item.name}</td><td>${item.sex}</td><td>${item.degree}</td>`;
+        string += `<td><a href="javascript:void(0)" onclick="del(${item.id})">删除</a>  `;
+        string += `<a href="javascript:void(0)" onclick="view(${item.id})">查看</a></td>`;
+        string += `</tr>`
+      }, this);
+
+      $('#content').html(string);
+    });
+  }
+
+  function gosearch(e){
+    search();
+    e.stopPropagation();
+    e.preventDefault();
+  }
+</script>
