@@ -24,6 +24,26 @@ class ModalClass {
             })
         })
     }
+
+    insertOne() {
+
+    }
+
+    updateOne(id, name, sex, degree) {
+        return new Promise((resolve, reject) => {
+            var updateSqlParams = [name, sex, degree, id];
+            var sql = mysql.format('UPDATE myclass SET name = ?, sex = ?, degree = ? WHERE id = ?', updateSqlParams);
+            db.query(sql, function (error, results, fields) {
+                if (error) {
+                    console.log(error);
+                    
+                    reject(error);
+                } else {
+                    resolve(results)
+                }
+            });
+        })
+    }
 };
 
 module.exports = ModalClass;

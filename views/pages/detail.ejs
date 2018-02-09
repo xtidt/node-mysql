@@ -14,21 +14,50 @@
   </header>
 
   <main class="container">
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>成绩</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody id="content">
-        </tbody>
-      </table>
-    </div>
+      <div class="insert-content">
+        <a href="/page/view" class="pull-left">返回</a>
+
+        <form class="col-sm-12 form-horizontal" role="form">
+          <fieldset>
+            <input type="hidden" id="id" value="<%= id %>">
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label" for="name">姓名</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="name" name="name" placeholder="姓名" required>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="col-sm-3 control-label" for="sex">性别</label>
+              <div class="col-sm-6">
+                <div class="radio">
+                  <label for="sex_1">
+                    <input type="radio" name="sex" value="1" id="sex_1" checked> 男
+                  </label>
+  
+                  <label for="sex_0">
+                    <input type="radio" name="sex" value="0" id="sex_0"> 女
+                  </label>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="col-sm-3 control-label" for="degree">成绩</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="degree" name="degree" placeholder="成绩" required>
+              </div>
+            </div>
+            
+            <% if(action == 'update'){ %>
+            <div class="text-center">
+              <button type="button" onclick="update()" class="btn btn-default">提交</button>
+            </div>
+            <% } %>
+  
+        </form>
+      </div>
   </main>
 
   <footer>
@@ -36,7 +65,7 @@
   </footer>
 
   <script>
-    var id = window.location.pathname.match(/view\/(\d+)/)[1];
+    var id = $('input[type="hidden"]').val();
     let model = {
       getItem: (id) => {
         return $.ajax({
@@ -50,20 +79,21 @@
           url: '/api/delete/' + id,
           method: "GET",
         })
+      },
+
+      updateItem: (options)=> {
+        return $.ajax({
+          url: '/api/update/' + id,
+          method: "POST",
+          data: options
+        })
       }
     }
 
     model.getItem(id).then((data) => {
-      let string = '';
-      data.forEach(function (item, index) {
-        string += `<tr>`;
-        string += `<td>${index + 1}</td><td>${item.name}</td><td>${item.sex}</td><td>${item.degree}</td>`;
-        string += `<td><a href="javascript:void(0)" onclick="del(${item.id})">删除</a>  `;
-        string += `<a href="javascript:void(0)" onclick="view(${item.id})">查看</a></td>`;
-        string += `</tr>`
-      }, this);
-
-      $('#content').html(string);
+      $('#name').val(data.name);
+      $(`input[name='sex'][value=${data.sex}]`).prop('checked', true)
+      $('#degree').val(data.degree);
     });
 
     function del(id){
@@ -74,6 +104,25 @@
 
     function view(id){
       window.location.href = '/page/view/'+ id;
+    }
+
+    function update(){
+      var data = {
+        id: $('#id').val(),
+        name: $('#name').val(),
+        sex: $("input[name='sex']:checked").val(),
+        degree: $('#degree').val()
+      }
+
+      for (var i in data) {
+        if (!data[i]) {
+          return false;
+        }
+      }
+
+      model.updateItem(data).then(() => {
+        // window.location.href = '/';
+      });
     }
 
   </script>

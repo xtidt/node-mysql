@@ -37,6 +37,17 @@ page.get('/view', function(req, res, next) {
 page.get('/view/:id', function(req, res, next) {
   res.render('pages/detail', {
     title: '详情',
+    action: 'view',
+    id: req.params.id,
+    username: res.locals.islogin
+  });
+});
+
+page.get('/update/:id', function(req, res, next) {
+  res.render('pages/detail', {
+    title: '更新',
+    action: 'update',
+    id: req.params.id,
     username: res.locals.islogin
   });
 });

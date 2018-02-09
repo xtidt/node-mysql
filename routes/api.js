@@ -48,22 +48,15 @@ api.get('/view/:id', function (req, res, next) {
     res.status(400).json({'error':'require params'})
   }
 
-  // let modalClass = new ModalClass();
-  // modalClass.getlist().then(
-  //   (rows) => {
-  //     res.send(rows);
-  //   },
-  //   (err) => {
-  //     res.status(400).json({'error': err})
-  //   }
-  // )
-  db.query('select * from myclass where id = ' + id, function (err, rows) {
-    if (err) {
-      res.send([]);
-    } else {
-      res.send(rows);
+  let modalClass = new ModalClass();
+  modalClass.getDetail(id).then(
+    (rows) => {
+      res.send(rows[0]);
+    },
+    (err) => {
+      res.status(400).json({'error': err})
     }
-  })
+  )
 });
 
 /**
@@ -73,11 +66,15 @@ api.post('/insert', function (req, res, next) {
   var name = req.body.name;
   var sex = req.body.sex;
   var degree = req.body.degree;
-  var addSqlParams = [name, sex, degree];
 
+  if(!name || !sex || !degree){
+    res.status(400).json({'error':'require params'})
+  }
+
+  var addSqlParams = [name, sex, degree];
   var addSql = 'INSERT INTO myclass(name, sex, degree) VALUES(?,?,?)';
-  //Preparing Queries
-  sql = mysql.format(addSql, addSqlParams);
+
+  var sql = mysql.format(addSql, addSqlParams);
 
   db.query(sql, function (err, rows) {
     if (err) {
@@ -92,8 +89,37 @@ api.post('/insert', function (req, res, next) {
 /**
  * 修改
  */
-api.get('/update', function (req, res, next) {
-  res.send('update');
+api.post('/update/:id', function (req, res, next) {
+  console.log(req.body)
+  var id = req.body.id;
+  var name = req.body.name;
+  var sex = req.body.sex;
+  var degree = req.body.degree;
+
+  if(!id || !name || !sex || !degree){
+    res.status(400).json({'error':'require params'})
+  }
+
+  let modalClass = new ModalClass();
+  modalClass.updateOne(id, name, sex, degree).then(
+    (rows) => {
+      res.send(rows);
+    },
+    (err) => {
+      console.log(err)
+      res.status(400).json({'error': err})
+    }
+  );
+
+  // var updateSqlParams = [name, sex, degree, id];
+  // var sql = mysql.format('UPDATE myclass SET name = ?, sex = ?, degree = ? WHERE id = ?', updateSqlParams);
+  // db.query(sql, function (error, results, fields) {
+  //   if (error) {
+  //     throw error
+  //   };
+  //   console.log('ok')
+  // });
+  
 });
 
 /**
