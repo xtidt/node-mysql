@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     }
 
     res.render('user/login', {
-        'title': 'login'
+        'title': '登陆'
     });
 });
 
@@ -62,29 +62,35 @@ router.route('/login')
         })
     });
 
-router.get('/reg', function(req, res, next) {
-    res.render('user/reg', {
-        'title': '注册'
-    });
-});
-
-router.post('/reg', function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-    var addSqlParams = [username, password];
-
-    var addSql = 'INSERT INTO user(username, password) VALUES(?,?)';
-
-    var sql = mysql.format(addSql, addSqlParams);
-
-    db.query(sql, function(err, rows) {
-        if (err) {
-            res.end('新增失败：' + err);
-        } else {
-            res.send(rows);
-        }
+router.route('/reg')
+    .get(function(req, res, next) {
+        res.render('user/reg', {
+            'title': '注册'
+        });
     })
+    .post(function(req, res, next) {
+        var username = req.body.username;
+        var password = req.body.password;
+        var addSqlParams = [username, password];
+    
+        var addSql = 'INSERT INTO user(username, password) VALUES(?,?)';
+    
+        var sql = mysql.format(addSql, addSqlParams);
+    
+        db.query(sql, function(err, rows) {
+            if (err) {
+                res.end('新增失败：' + err);
+            } else {
+                res.send(rows);
+            }
+        })
+    
+    });
 
-});
+router.get('/logout', function(req, res, next){
+    res.clearCookie('islogin');
+    req.session.destroy();
+    res.redirect('/');
+})
 
 module.exports = router;

@@ -6,15 +6,13 @@
   <body>
     <div class="container-fluid">
         <div class="row">
-            <h1>
-                <%= title %>
-            </h1>
-            <a href="/user/login">login</a>
-
             <div class="container">
                 <form class="col-sm-12 form-horizontal" role="form">
                     <fieldset>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><%= title %></label>
+                            <div class="col-sm-9"><a href="/user/login" style="padding-top: 7px;display: inline-block;">去登录</a></div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="username">用户名</label>
                             <div class="col-sm-9">
