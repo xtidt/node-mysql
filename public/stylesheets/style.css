@@ -1,8 +1,23 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.panel {
+  width: 600px;
+  margin: 0 0 0 50%;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #999;
+  padding: 10px 20px;
+  position: absolute;
+  left: -300px;
+  top: 200px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }

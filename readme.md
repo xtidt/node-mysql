@@ -1,4 +1,3 @@
-readme.md
 ## node express + node mysql 
 
 ### step 1
@@ -116,7 +115,7 @@ npm start
 
 > 访问列表页面 查询数据
 ```javascript
-http://127.0.0.1:10000/view || localhost:10000/view
+http://127.0.0.1:10000 || localhost:10000
 ```
 
 

@@ -1,18 +1,16 @@
 <!-- views/partials/tool.ejs -->
-<ul class="nav navbar-nav">
-  <li><a href="/view">查看</a></li>
-  <li><a href="/insert">新增</a></li>
-</ul>
-
-<ul class="search">
-    <form class="form-inline" onsubmit="gosearch(event)">
-      <div class="form-group">
-        <label class="sr-only" for="keys"></label>
-        <input type="text" class="form-control" id="keys" placeholder="按姓名搜索">
-      </div>
-      <button type="button" onclick="search()" class="btn btn-default">搜索</button>
-    </form>
-</ul>
+<div>
+    <a href="/page/insert" class="btn btn-default pull-left">新增</a>
+    <ul class="search">
+        <form class="form-inline" onsubmit="gosearch(event)">
+          <div class="form-group">
+            <label class="sr-only" for="keys"></label>
+            <input type="text" class="form-control" id="keys" placeholder="按姓名搜索">
+          </div>
+          <button type="button" onclick="search()" class="btn btn-default">搜索</button>
+        </form>
+    </ul>
+</div>
 <style>
   .search {
     float: right;

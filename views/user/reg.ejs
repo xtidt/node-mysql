@@ -4,36 +4,34 @@
     <% include ../partials/header %>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid panel">
         <div class="row">
-            <div class="container">
-                <form class="col-sm-12 form-horizontal" role="form">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label"><%= title %></label>
-                            <div class="col-sm-9"><a href="/user/login" style="padding-top: 7px;display: inline-block;">去登录</a></div>
+            <form class="col-sm-12 form-horizontal" role="form">
+                <h4><%= title %></h4>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="username">用户名</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="用户名" required>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="username">用户名</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="用户名" required>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="password">密码</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="密码" required>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="password">密码</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="密码" required>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <button type="button" onclick="reg()" class="btn btn-default">提交</button>
+                            
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9 text-center">
-                                <button type="button" onclick="reg()" class="btn btn-default">提交</button>
-                            </div>
+                        <div>
+                            <a href="/user/login" class="col-sm-offset-1">去登录</a>
                         </div>
-                    </fieldset>
-                </form>
-            </div>
-
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 

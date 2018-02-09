@@ -22,32 +22,31 @@ page.use(function timeLog(req, res, next) {
 
 page.get('/', function(req, res, next) {
   res.render('pages/index',{
+    title: '主页',
     username: res.locals.islogin
   });
 });
 
 page.get('/view', function(req, res, next) {
   res.render('pages/view', {
+    title: '列表',
     username: res.locals.islogin
   });
 });
 
 page.get('/view/:id', function(req, res, next) {
   res.render('pages/detail', {
+    title: '详情',
     username: res.locals.islogin
   });
 });
 
 page.get('/insert', function(req, res, next) {
-  res.render('pages/insert');
+  res.render('pages/insert',{
+    title: '新增',
+    username: res.locals.islogin
+  });
 });
 
-page.get('/update', function(req, res, next) {
-  res.send('page update');
-});
-
-page.get('/delete', function(req, res, next) {
-  res.send('page delete');
-});
 
 module.exports = page;
