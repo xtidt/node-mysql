@@ -7,6 +7,19 @@ var db = require('../modal/db');
 // 该路由使用的中间件
 api.use(function timeLog(req, res, next) {
   // console.log('Time: ', Date.now());
+  if(req.cookies.islogin){
+    req.session.islogin=req.cookies.islogin;
+  }
+
+  if(req.session.islogin){
+    res.locals.islogin=req.session.islogin;
+  }
+
+  if(!res.locals.islogin){
+    res.status(400).json({error: '用户未登录,没有权限'});
+    return;
+  }
+
   next();
 });
 
