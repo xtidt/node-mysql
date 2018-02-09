@@ -14,6 +14,7 @@ function query(sql, callback) {
     connection.query(sql, function(err, rows) {
       callback(err, rows);
       connection.release(); //释放链接
+      if (err) throw err;
     });
   });
 }
