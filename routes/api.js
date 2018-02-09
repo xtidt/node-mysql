@@ -2,6 +2,7 @@ var express = require('express');
 var mysql = require('mysql');
 var api = express.Router();
 var db = require('../modal/db');
+var ModalClass = require('../modal/ModalClass');
 
 
 // 该路由使用的中间件
@@ -27,13 +28,15 @@ api.use(function timeLog(req, res, next) {
  * 查询列表页
  */
 api.get('/view', function (req, res, next) {
-  db.query('select * from myclass', function (err, rows) {
-    if (err) {
-      res.send([]);
-    } else {
+  let modalClass = new ModalClass();
+  modalClass.getlist().then(
+    (rows) => {
       res.send(rows);
+    },
+    (err) => {
+      res.send(err);
     }
-  })
+  )
 });
 
 /**
@@ -41,6 +44,19 @@ api.get('/view', function (req, res, next) {
  */
 api.get('/view/:id', function (req, res, next) {
   var id = req.params.id;
+  if(!id){
+    res.status(400).json({'error':'require params'})
+  }
+
+  // let modalClass = new ModalClass();
+  // modalClass.getlist().then(
+  //   (rows) => {
+  //     res.send(rows);
+  //   },
+  //   (err) => {
+  //     res.status(400).json({'error': err})
+  //   }
+  // )
   db.query('select * from myclass where id = ' + id, function (err, rows) {
     if (err) {
       res.send([]);

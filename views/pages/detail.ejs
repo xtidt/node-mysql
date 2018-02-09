@@ -43,6 +43,13 @@
           url: '/api/view/' + id,
           method: "GET",
         })
+      },
+
+      delItem: (id)=> {
+        return $.ajax({
+          url: '/api/delete/' + id,
+          method: "GET",
+        })
       }
     }
 
@@ -58,6 +65,17 @@
 
       $('#content').html(string);
     });
+
+    function del(id){
+      model.delItem(id).then(()=>{
+        window.location.reload();
+      });
+    }
+
+    function view(id){
+      window.location.href = '/page/view/'+ id;
+    }
+
   </script>
 </body>
 
