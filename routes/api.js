@@ -43,7 +43,7 @@ api.get('/view', function (req, res, next) {
  * 查询详情页
  */
 api.get('/view/:id', function (req, res, next) {
-  var id = req.params.id;
+  let id = req.params.id;
   if(!id){
     res.status(400).json({'error':'require params'})
   }
@@ -71,26 +71,22 @@ api.post('/insert', function (req, res, next) {
     res.status(400).json({'error':'require params'})
   }
 
-  var addSqlParams = [name, sex, degree];
-  var addSql = 'INSERT INTO myclass(name, sex, degree) VALUES(?,?,?)';
-
-  var sql = mysql.format(addSql, addSqlParams);
-
-  db.query(sql, function (err, rows) {
-    if (err) {
-      res.end('新增失败：' + err);
-    } else {
+  let modalClass = new ModalClass();
+  modalClass.insertOne(name, sex, degree).then(
+    (rows) => {
       res.send(rows);
-      // res.redirect('/pages');
+    },
+    (err) => {
+      res.status(400).json({'error': err})
     }
-  })
+  );
+  
 });
 
 /**
  * 修改
  */
 api.post('/update/:id', function (req, res, next) {
-  console.log(req.body)
   var id = req.body.id;
   var name = req.body.name;
   var sex = req.body.sex;
@@ -106,60 +102,42 @@ api.post('/update/:id', function (req, res, next) {
       res.send(rows);
     },
     (err) => {
-      console.log(err)
       res.status(400).json({'error': err})
     }
   );
 
-  // var updateSqlParams = [name, sex, degree, id];
-  // var sql = mysql.format('UPDATE myclass SET name = ?, sex = ?, degree = ? WHERE id = ?', updateSqlParams);
-  // db.query(sql, function (error, results, fields) {
-  //   if (error) {
-  //     throw error
-  //   };
-  //   console.log('ok')
-  // });
-  
 });
 
 /**
  * 删
  */
 api.get('/delete/:id', function (req, res, next) {
-  var id = req.params.id;
-  db.query("delete from myclass where id=" + id, function (err, rows) {
-    if (err) {
-      res.end('删除失败：' + err)
-    } else {
-      res.send('delete');
+  let id = req.params.id;
+  let modalClass = new ModalClass();
+  modalClass.deleteOne(id).then(
+    (rows) => {
+      res.send(rows);
+    },
+    (err) => {
+      res.status(400).json({'error': err})
     }
-  });
+  )
 });
 
 /**
  * 查询
  */
 api.get('/search', function (req, res, next) {
-  var name = req.query.name;
-  var sql = "select * from myclass";
-
-  if (name) {
-    sql += " and name LIKE '%" + name + "%' ";
-  }
-
-  // if (age) {
-  //   sql += " and age=" + age + " ";
-  // }
-  sql = sql.replace("and", "where");
-
-
-  db.query(sql, function (err, rows) {
-    if (err) {
-      res.end("查询失败：", err)
-    } else {
+  let name = req.query.name;
+  let modalClass = new ModalClass();
+  modalClass.search(name).then(
+    (rows) => {
       res.send(rows);
+    },
+    (err) => {
+      res.status(400).json({'error': err})
     }
-  });
+  )
 })
 
 module.exports = api;
