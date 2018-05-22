@@ -10,6 +10,10 @@
   "keywords": [
     "node-mysql"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xtidt/node-mysql"
+  },
   "author": "tony",
   "license": "ISC",
   "dependencies": {
