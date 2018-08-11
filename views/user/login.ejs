@@ -53,13 +53,18 @@
 
       for(var i in data){
         if(!data[i]){
+          alert('请完善表单');
           return false;
         }
       }
 
-      model.login(data).then(() => {
-        window.location.href = '/';
-      });
+      model.login(data).then(
+        (data) => {
+          window.location.href = '/';
+        },
+        (err) => {
+          alert(err.responseJSON.error)
+        });
     }
 </script>
   </body>
